@@ -29,8 +29,9 @@ if (!requireNamespace("remotes", quietly = TRUE)) {
   install.packages("remotes")
 }
 
-remotes::install_github("XivumbiwaMaswanganyi/projrsimple")
+remotes::install_github("MiguelRodo/projrsimple")
 
+projr_init()
 
 
 
