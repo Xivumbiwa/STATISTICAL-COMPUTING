@@ -20,4 +20,18 @@ gert::git_config_global_set("user.email",email)
 
 
 usethis:: use_git()
+
+usethis:: create_github_token()
+
+gitcreds:: gitcreds_set()
+
+if (!requireNamespace("remotes", quietly = TRUE)) {
+  install.packages("remotes")
+}
+
+remotes::install_github("XivumbiwaMaswanganyi/projrsimple")
+
+
+
+
 11
