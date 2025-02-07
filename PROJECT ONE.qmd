@@ -1,0 +1,75 @@
+---
+title: "Practical One"
+format: html
+editor: visual
+---
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+data("airquality")
+
+```
+
+Dropping the missing values in the data
+
+```{r}
+install.packages("tidyr")
+library(tidyr)
+
+cleaned_data <- drop_na(airquality)
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
+
+```{r}
+mean(cleaned_data$Ozone)
+sd(cleaned_data$Ozone)
+min(cleaned_data$Ozone)
+max(cleaned_data$Ozone)
+
+
+mean(cleaned_data$Temp)
+sd(cleaned_data$Temp)
+min(cleaned_data$Temp)
+max(cleaned_data$Temp)
+```
+
+Cars data
+
+```{r}
+data("cars")
+```
+
+```{r}
+linear_cars <- lm (dist~ speed, data=cars)
+summary(linear_cars)
+```
+
+```{r}
+x <- cbind(1,cars$speed)
+y <- as.matrix(cars$dist,1)
+
+
+```
+
+```{r}
+beta_function <- function(x,y) {
+  solve(t(x) %*% x) %*% t(x) %*% y
+  
+}
+
+beta_function(x,y)
+
+summary(beta_function(x,y))
+```
+
+```{r}
+
+```
