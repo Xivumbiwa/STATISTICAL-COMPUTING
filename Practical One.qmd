@@ -1,0 +1,78 @@
+---
+title: "Practical One"
+format: html
+editor: visual
+---
+
+## Airquality and Cars Data
+
+```{r}
+data("airquality")
+```
+
+Printing the missing values then dropping them
+
+```{r}
+#| echo: false
+install.packages("tidyr")
+library(tidyr)
+
+missing_val <- airquality[!complete.cases(airquality), ]
+print(missing_val)
+
+cleaned_data <- drop_na(airquality)
+```
+
+Finding the mean,sd,min,max for the Ozone
+
+```{r}
+cat("Mean:", mean(cleaned_data$Ozone), "\n")
+cat("Sd:", sd(cleaned_data$Ozone), "\n")
+cat("Min:", min(cleaned_data$Ozone), "\n")
+cat("Max:", max(cleaned_data$Ozone), "\n")
+
+```
+
+Finding the mean,sd,min,max for each of temperature
+
+```{r}
+
+cat("Mean:", mean(cleaned_data$Temp), "\n")
+cat("Sd:", sd(cleaned_data$Temp), "\n")
+cat("Min:", min(cleaned_data$Temp), "\n")
+cat("Max:", max(cleaned_data$Temp), "\n")
+```
+
+Cars data
+
+```{r}
+#| echo: false
+data("cars")
+```
+
+Linear regression model
+
+```{r}
+linear_cars <- lm (dist~ speed, data=cars)
+summary(linear_cars)
+```
+
+```{r}
+#| echo: false
+x <- cbind(1,cars$speed)
+y <- as.matrix(cars$dist,1)
+n <- length(y)
+p <- ncol(x)
+```
+
+Finding the beta estimates
+
+```{r}
+beta_function <- function(x,y) {
+  solve(t(x) %*% x) %*% t(x) %*% y
+  
+  
+}
+
+beta_function(x,y)
+```
