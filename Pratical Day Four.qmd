@@ -1,0 +1,81 @@
+---
+title: "Pratical day four"
+format: html
+editor: visual
+---
+
+```{r}
+#| echo: false
+# Install tidyverse if not already installed
+if (!requireNamespace("tidyverse", quietly = TRUE)) {
+  install.packages("tidyverse")
+}
+library(tidyverse)
+
+# Install and load nycflights13 for flight data
+if (!requireNamespace("nycflights13", quietly = TRUE)) {
+  install.packages("nycflights13")
+}
+
+if (!requireNamespace("tibble", quietly = TRUE)) {
+  install.packages("tibble")
+}
+library(tibble)
+library(dplyr)
+library(nycflights13)
+
+
+data("flights", package="nycflights13")
+```
+
+Displaying flights in an alternative format
+
+```{r}
+flights <- as_tibble(flights)
+print(flights)
+
+
+
+
+```
+
+Rewriting code using dplyr
+
+```{r}
+flights |> filter(month ==1)
+flight1 <- flights[flights$month ==1,]
+flights|> distinct(flights$carrier)
+carrier_vec <- unique(flights$carrier)
+distance <- flights$distance
+
+mean_and_sd <- flights %>%
+  group_by(carrier) %>%
+  summarize(
+    carrier_dist_mean = mean(distance, na.rm = TRUE),
+    carrier_dist_sd = sd(distance, na.rm = TRUE)
+  )
+
+print(mean_and_sd)
+
+a
+
+
+  
+
+
+
+for (i in seq_along(carrier_vec)) {
+  carrier_dist_vec_mean[i] <- mean(
+    flight1$distance[flight1$carrier == carrier_vec[i]]
+   )
+  carrier_dist_vec_sd[i] <- sd(
+    flight1$distance[flight1$carrier == carrier_vec[i]]
+  )
+}
+dist_tbl <- tibble(
+  carrier = carrier_vec,
+  mean_distance = carrier_dist_vec_mean,
+  sd_distance = carrier_dist_vec_sd
+)
+dist_tbl[order(dist_tbl$mean_distance), ]
+```
