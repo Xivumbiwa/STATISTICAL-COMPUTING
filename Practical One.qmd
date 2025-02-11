@@ -4,13 +4,12 @@ format: html
 editor: visual
 ---
 
-## Airquality and Cars Data
-
 ```{r}
 data("airquality")
+
 ```
 
-Printing the missing values then dropping them
+Printing the missing values and dropping them
 
 ```{r}
 #| echo: false
@@ -30,13 +29,11 @@ cat("Mean:", mean(cleaned_data$Ozone), "\n")
 cat("Sd:", sd(cleaned_data$Ozone), "\n")
 cat("Min:", min(cleaned_data$Ozone), "\n")
 cat("Max:", max(cleaned_data$Ozone), "\n")
-
 ```
 
-Finding the mean,sd,min,max for each of temperature
+Finding the mean,sd,min,max for the temperature
 
 ```{r}
-
 cat("Mean:", mean(cleaned_data$Temp), "\n")
 cat("Sd:", sd(cleaned_data$Temp), "\n")
 cat("Min:", min(cleaned_data$Temp), "\n")
@@ -57,6 +54,8 @@ linear_cars <- lm (dist~ speed, data=cars)
 summary(linear_cars)
 ```
 
+Finding the beta estimates
+
 ```{r}
 #| echo: false
 x <- cbind(1,cars$speed)
@@ -64,8 +63,6 @@ y <- as.matrix(cars$dist,1)
 n <- length(y)
 p <- ncol(x)
 ```
-
-Finding the beta estimates
 
 ```{r}
 beta_function <- function(x,y) {
