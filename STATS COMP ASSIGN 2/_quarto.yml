@@ -1,0 +1,26 @@
+project:
+  type: book
+  render:
+  - index.qmd
+  - STATS COMP ASSIGN 2.qmd
+  output-dir: docs
+book:
+  title: Statistical Computing Assignment 2 MSWXIV001
+  sidebar:
+    border: true
+    background: light
+    position: right
+  navbar:
+    search: true
+    background: light
+  chapters:
+  - index.qmd
+  - STATS COMP ASSIGN 2.qmd
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    toc-location: left
+    
+

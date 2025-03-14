@@ -1,10 +1,11 @@
 ---
-title: "STATS COMP ASSIGN 2"
+title: "STATS COMPUTING ASSIGNMENT 2"
 ---
 
 ## QUESTION 1
 
 ```{r}
+
 library(foreach)
 library(doParallel)
 
@@ -24,6 +25,8 @@ results
 ## QUESTION 2
 
 ```{r}
+#| eval: false
+
 library(foreach)
 library(doParallel)
 
@@ -72,6 +75,8 @@ for (j in 1:1000) {
 ## QUESTION 3
 
 ```{r}
+#| eval: false
+
 library(foreach)
 library(doParallel)
 
@@ -106,13 +111,16 @@ result <- foreach(i= 1:B, .combine='+') %dopar%{
 
 coverage <- result/B
 coverage
-
+cat("coverage of a percentile bootstrap confidence interval is ", coverage,"\n")
 stopCluster(cl)
 ```
 
 ## QUESTION 4
 
 ```{r}
+#| eval: false
+
+
 library(foreach)
 
 set.seed(1234)
@@ -167,11 +175,17 @@ system.time({
 ### parLapply
 
 ```{r}
+
 library(parallel)
 library(iterators)
 
+
+cl <- makeCluster(3) 
+clusterExport(cl, varlist = c("result", "irnorm", "nextElem"))  
+
 set.seed(1234)
 result <- function() {
+
   it <- irnorm(5)
   nextElem(it)
   nextElem(it)
@@ -180,23 +194,26 @@ result <- function() {
   nextElem(it)
 }
 
-cl <- makeCluster(3)
-clusterExport(cl, "result")
-clusterEvalQ(cl, library(iterators))
 
 system.time({
-  parL <- parLapply(cl, 1:3, function(i){
+  result2 <- parLapply(cl, 1:3, function(i) {
     result()
   })
-
+  
+ 
+  result2 <- do.call(cbind, result2)
+  
   for (i in 1:3) {
-    maxi <- max(parL[[i]])
+    maxi <- max(result2[, i])
     print(maxi)
   }
 })
 
+
 stopCluster(cl)
 ```
+
+\
 
 ### REPLICATE
 
