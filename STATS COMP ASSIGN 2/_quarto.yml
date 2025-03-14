@@ -2,8 +2,8 @@ project:
   type: book
   render:
   - index.qmd
-  - STATS COMP ASSIGN 2.qmd
-  output-dir: docs
+  - STATS_COMP_ASSIGN_2.qmd
+  output-dir: _site/
 book:
   title: Statistical Computing Assignment 2 MSWXIV001
   sidebar:
@@ -15,7 +15,7 @@ book:
     background: light
   chapters:
   - index.qmd
-  - STATS COMP ASSIGN 2.qmd
+  - STATS_COMP_ASSIGN_2.qmd
 format:
   html:
     theme: cosmo

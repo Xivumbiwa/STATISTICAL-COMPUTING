@@ -24,7 +24,8 @@ results
 
 ## QUESTION 2
 
-```{r, cache=TRUE, timeout=3000}
+```{r}
+
 
 library(foreach)
 library(doParallel)
