@@ -198,632 +198,641 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="question-1" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="question-1"><span class="header-section-number">2.1</span> QUESTION 1</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foreach)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(doParallel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foreach)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'foreach' was built under R version 4.2.3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(doParallel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'doParallel' was built under R version 4.2.3</code></pre>
+</div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: iterators</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'iterators' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: parallel</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">foreach</span>(<span class="at">i =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) <span class="sc">%do%</span> {</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  vals <span class="ot">&lt;-</span> <span class="fu">rexp</span>(<span class="dv">100</span>, <span class="at">rate =</span> <span class="dv">1</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  mean_vals <span class="ot">&lt;-</span> <span class="fu">mean</span>(vals)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  var_vals <span class="ot">&lt;-</span> <span class="fu">var</span>(vals)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">rbind</span>(mean_vals, var_vals))</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">foreach</span>(<span class="at">i =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) <span class="sc">%do%</span> {</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  vals <span class="ot">&lt;-</span> <span class="fu">rexp</span>(<span class="dv">100</span>, <span class="at">rate =</span> <span class="dv">1</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  mean_vals <span class="ot">&lt;-</span> <span class="fu">mean</span>(vals)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  var_vals <span class="ot">&lt;-</span> <span class="fu">var</span>(vals)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">rbind</span>(mean_vals, var_vals))</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
                [,1]
-mean_vals 1.0587256
-var_vals  0.9556371
+mean_vals 1.0431541
+var_vals  0.9348184
 
 [[2]]
               [,1]
-mean_vals 0.952377
-var_vals  1.334712
+mean_vals 1.078794
+var_vals  1.022519
 
 [[3]]
-              [,1]
-mean_vals 1.186404
-var_vals  1.286816
+               [,1]
+mean_vals 0.9745160
+var_vals  0.9710858
 
 [[4]]
-              [,1]
-mean_vals 1.091023
-var_vals  1.323906
+               [,1]
+mean_vals 0.9731620
+var_vals  0.9482318
 
 [[5]]
-              [,1]
-mean_vals 1.060757
-var_vals  1.275118
+               [,1]
+mean_vals 0.9479963
+var_vals  0.7454493
 
 [[6]]
                [,1]
-mean_vals 1.0695393
-var_vals  0.9420599
+mean_vals 0.9055942
+var_vals  0.7515672
 
 [[7]]
-               [,1]
-mean_vals 0.9989615
-var_vals  0.9608739
+              [,1]
+mean_vals 1.082326
+var_vals  1.225791
 
 [[8]]
-              [,1]
-mean_vals 1.013336
-var_vals  1.270273
+               [,1]
+mean_vals 0.9698196
+var_vals  0.9150192
 
 [[9]]
-              [,1]
-mean_vals 1.006246
-var_vals  1.042289
+               [,1]
+mean_vals 0.9600890
+var_vals  0.7943335
 
 [[10]]
               [,1]
-mean_vals 1.026031
-var_vals  1.343064
+mean_vals 1.205278
+var_vals  1.332253
 
 [[11]]
-               [,1]
-mean_vals 1.0200028
-var_vals  0.8428296
+              [,1]
+mean_vals 1.002065
+var_vals  1.231796
 
 [[12]]
                [,1]
-mean_vals 0.8826857
-var_vals  0.5147526
+mean_vals 1.0460833
+var_vals  0.9375026
 
 [[13]]
-              [,1]
-mean_vals 1.132770
-var_vals  1.423334
+               [,1]
+mean_vals 0.8452223
+var_vals  0.6314157
 
 [[14]]
-               [,1]
-mean_vals 0.9918531
-var_vals  0.8354736
+              [,1]
+mean_vals 1.085544
+var_vals  1.045919
 
 [[15]]
-               [,1]
-mean_vals 1.0725884
-var_vals  0.7942225
+              [,1]
+mean_vals 1.070635
+var_vals  1.179013
 
 [[16]]
-              [,1]
-mean_vals 1.006795
-var_vals  1.063923
+               [,1]
+mean_vals 0.9610735
+var_vals  0.6895224
 
 [[17]]
-              [,1]
-mean_vals 1.023719
-var_vals  1.004079
+               [,1]
+mean_vals 0.9810044
+var_vals  0.8328686
 
 [[18]]
-               [,1]
-mean_vals 0.9270459
-var_vals  0.7422696
+              [,1]
+mean_vals 1.073782
+var_vals  1.010230
 
 [[19]]
               [,1]
-mean_vals 1.001228
-var_vals  1.725898
+mean_vals 1.164795
+var_vals  1.477256
 
 [[20]]
-               [,1]
-mean_vals 0.8759518
-var_vals  0.6842123
+              [,1]
+mean_vals 1.090574
+var_vals  1.232335
 
 [[21]]
                [,1]
-mean_vals 1.0066837
-var_vals  0.8083705
+mean_vals 0.9856724
+var_vals  0.9740725
 
 [[22]]
-              [,1]
-mean_vals 1.178706
-var_vals  1.361211
+               [,1]
+mean_vals 0.8551207
+var_vals  0.8462135
 
 [[23]]
               [,1]
-mean_vals 1.031665
-var_vals  1.008787
+mean_vals 1.165877
+var_vals  1.389727
 
 [[24]]
                [,1]
-mean_vals 1.1081618
-var_vals  0.7376681
+mean_vals 0.9461874
+var_vals  1.0626861
 
 [[25]]
                [,1]
-mean_vals 0.9497839
-var_vals  0.7686085
+mean_vals 0.8617279
+var_vals  0.5986997
 
 [[26]]
               [,1]
-mean_vals 1.004134
-var_vals  1.023800
+mean_vals 1.021435
+var_vals  1.011768
 
 [[27]]
-              [,1]
-mean_vals 1.226301
-var_vals  1.483744
+               [,1]
+mean_vals 1.0009613
+var_vals  0.6757984
 
 [[28]]
                [,1]
-mean_vals 0.7861603
-var_vals  0.4669250
+mean_vals 1.0026598
+var_vals  0.8835541
 
 [[29]]
-              [,1]
-mean_vals 1.167571
-var_vals  1.598145
+               [,1]
+mean_vals 0.9145839
+var_vals  0.7858424
 
 [[30]]
-               [,1]
-mean_vals 1.0732635
-var_vals  0.7922303
+              [,1]
+mean_vals 1.092177
+var_vals  1.247743
 
 [[31]]
-              [,1]
-mean_vals 1.076669
-var_vals  1.008539
+               [,1]
+mean_vals 0.9206899
+var_vals  0.9512230
 
 [[32]]
-              [,1]
-mean_vals 1.223850
-var_vals  1.013985
+               [,1]
+mean_vals 0.9710871
+var_vals  1.0641036
 
 [[33]]
                [,1]
-mean_vals 1.0354144
-var_vals  0.9206582
+mean_vals 0.8147088
+var_vals  0.5779395
 
 [[34]]
-               [,1]
-mean_vals 1.0424557
-var_vals  0.9392771
+              [,1]
+mean_vals 1.178920
+var_vals  1.481789
 
 [[35]]
-              [,1]
-mean_vals 1.166141
-var_vals  1.352988
+               [,1]
+mean_vals 0.9019042
+var_vals  1.0226911
 
 [[36]]
-               [,1]
-mean_vals 0.9424371
-var_vals  0.9447060
+              [,1]
+mean_vals 1.140699
+var_vals  1.037534
 
 [[37]]
                [,1]
-mean_vals 0.9927132
-var_vals  0.6656918
+mean_vals 0.9322212
+var_vals  1.7238317
 
 [[38]]
-               [,1]
-mean_vals 0.9983396
-var_vals  1.1948173
+              [,1]
+mean_vals 1.116176
+var_vals  1.177561
 
 [[39]]
-               [,1]
-mean_vals 0.9036811
-var_vals  1.1902132
+              [,1]
+mean_vals 1.091815
+var_vals  1.141633
 
 [[40]]
               [,1]
-mean_vals 1.154314
-var_vals  1.052388
+mean_vals 1.008250
+var_vals  1.045971
 
 [[41]]
                [,1]
-mean_vals 0.9035919
-var_vals  0.6687862
+mean_vals 0.8950082
+var_vals  1.1132521
 
 [[42]]
                [,1]
-mean_vals 0.9313140
-var_vals  0.7827904
+mean_vals 0.9231057
+var_vals  0.7508453
 
 [[43]]
                [,1]
-mean_vals 0.9899004
-var_vals  0.9436438
+mean_vals 0.9903038
+var_vals  0.7541015
 
 [[44]]
                [,1]
-mean_vals 0.8535429
-var_vals  0.4511148
+mean_vals 0.9468854
+var_vals  1.2190587
 
 [[45]]
-               [,1]
-mean_vals 0.8798962
-var_vals  1.0459284
+              [,1]
+mean_vals 1.120986
+var_vals  1.164496
 
 [[46]]
                [,1]
-mean_vals 0.8224917
-var_vals  0.5888284
+mean_vals 1.0352479
+var_vals  0.8334461
 
 [[47]]
                [,1]
-mean_vals 1.0954506
-var_vals  0.8942713
+mean_vals 0.9883203
+var_vals  1.1843265
 
 [[48]]
-               [,1]
-mean_vals 0.8908771
-var_vals  0.7825799
+              [,1]
+mean_vals 1.161287
+var_vals  1.191619
 
 [[49]]
               [,1]
-mean_vals 1.093359
-var_vals  1.837578
+mean_vals 1.035972
+var_vals  1.161630
 
 [[50]]
               [,1]
-mean_vals 1.125016
-var_vals  1.408400
+mean_vals 1.021273
+var_vals  1.287546
 
 [[51]]
-              [,1]
-mean_vals 1.047283
-var_vals  1.169971
+               [,1]
+mean_vals 0.9586620
+var_vals  0.8877395
 
 [[52]]
               [,1]
-mean_vals 1.092646
-var_vals  1.337962
+mean_vals 1.105953
+var_vals  1.225831
 
 [[53]]
               [,1]
-mean_vals 1.055275
-var_vals  1.243405
+mean_vals 1.091883
+var_vals  1.099083
 
 [[54]]
                [,1]
-mean_vals 0.9246305
-var_vals  0.8764594
+mean_vals 0.9292702
+var_vals  0.8521241
 
 [[55]]
                [,1]
-mean_vals 0.8159158
-var_vals  0.6779185
+mean_vals 0.9222260
+var_vals  0.9904195
 
 [[56]]
                [,1]
-mean_vals 0.9070225
-var_vals  0.7270585
+mean_vals 0.9984374
+var_vals  0.9445948
 
 [[57]]
-               [,1]
-mean_vals 1.0475768
-var_vals  0.9666971
+              [,1]
+mean_vals 1.204345
+var_vals  1.424525
 
 [[58]]
-              [,1]
-mean_vals 1.002205
-var_vals  1.281521
+               [,1]
+mean_vals 1.0172119
+var_vals  0.6988281
 
 [[59]]
                [,1]
-mean_vals 0.8651742
-var_vals  0.7665287
+mean_vals 0.9611301
+var_vals  0.8369516
 
 [[60]]
-              [,1]
-mean_vals 1.155197
-var_vals  1.413354
+               [,1]
+mean_vals 0.9387508
+var_vals  0.9248552
 
 [[61]]
                [,1]
-mean_vals 0.9579361
-var_vals  0.6989760
+mean_vals 0.9724596
+var_vals  0.8718087
 
 [[62]]
-              [,1]
-mean_vals 1.088433
-var_vals  0.952852
+               [,1]
+mean_vals 0.9881939
+var_vals  1.0815830
 
 [[63]]
-               [,1]
-mean_vals 1.0168270
-var_vals  0.9415166
+              [,1]
+mean_vals 1.040287
+var_vals  1.064527
 
 [[64]]
                [,1]
-mean_vals 1.0035410
-var_vals  0.9956267
+mean_vals 0.9809055
+var_vals  0.7325756
 
 [[65]]
                [,1]
-mean_vals 1.1211447
-var_vals  0.8876025
+mean_vals 0.9723094
+var_vals  1.0077330
 
 [[66]]
-              [,1]
-mean_vals 1.110922
-var_vals  1.088337
+               [,1]
+mean_vals 0.9382952
+var_vals  0.8808709
 
 [[67]]
                [,1]
-mean_vals 1.0611765
-var_vals  0.7627068
+mean_vals 0.8258046
+var_vals  0.9541838
 
 [[68]]
               [,1]
-mean_vals 0.908732
-var_vals  1.034571
+mean_vals 1.102935
+var_vals  1.377716
 
 [[69]]
-              [,1]
-mean_vals 0.942902
-var_vals  0.470159
+               [,1]
+mean_vals 0.9199219
+var_vals  0.8373540
 
 [[70]]
               [,1]
-mean_vals 1.261061
-var_vals  2.237467
+mean_vals 1.057792
+var_vals  1.151033
 
 [[71]]
               [,1]
-mean_vals 1.034331
-var_vals  1.142952
+mean_vals 1.069289
+var_vals  1.076939
 
 [[72]]
-               [,1]
-mean_vals 0.9730690
-var_vals  0.7913964
+              [,1]
+mean_vals 1.024157
+var_vals  1.017253
 
 [[73]]
                [,1]
-mean_vals 0.9678028
-var_vals  1.0293998
+mean_vals 0.9995650
+var_vals  0.9224426
 
 [[74]]
-               [,1]
-mean_vals 0.8620032
-var_vals  0.6132763
+              [,1]
+mean_vals 1.080966
+var_vals  1.048135
 
 [[75]]
                [,1]
-mean_vals 0.8844502
-var_vals  0.6554400
+mean_vals 0.9824747
+var_vals  0.8675032
 
 [[76]]
                [,1]
-mean_vals 0.9398444
-var_vals  0.8662276
+mean_vals 0.9421948
+var_vals  0.6557731
 
 [[77]]
-              [,1]
-mean_vals 1.179558
-var_vals  1.470654
+               [,1]
+mean_vals 1.0303684
+var_vals  0.9072695
 
 [[78]]
-              [,1]
-mean_vals 1.050840
-var_vals  1.165169
+               [,1]
+mean_vals 1.0206151
+var_vals  0.9096915
 
 [[79]]
-               [,1]
-mean_vals 0.8247247
-var_vals  0.5629247
+              [,1]
+mean_vals 1.012755
+var_vals  1.204682
 
 [[80]]
                [,1]
-mean_vals 0.9343454
-var_vals  0.6951366
+mean_vals 1.0575385
+var_vals  0.8752973
 
 [[81]]
                [,1]
-mean_vals 0.8069799
-var_vals  0.6017744
+mean_vals 0.9346204
+var_vals  0.7560646
 
 [[82]]
               [,1]
-mean_vals 1.144631
-var_vals  1.216836
+mean_vals 1.016089
+var_vals  1.077884
 
 [[83]]
-              [,1]
-mean_vals 1.185516
-var_vals  1.604974
+               [,1]
+mean_vals 0.9048342
+var_vals  0.8426403
 
 [[84]]
-               [,1]
-mean_vals 1.1419153
-var_vals  0.9199543
+              [,1]
+mean_vals 1.045537
+var_vals  1.042401
 
 [[85]]
-              [,1]
-mean_vals 1.125922
-var_vals  1.314328
+               [,1]
+mean_vals 1.0572365
+var_vals  0.6923088
 
 [[86]]
               [,1]
-mean_vals 1.072307
-var_vals  1.035212
+mean_vals 1.067401
+var_vals  1.031427
 
 [[87]]
-              [,1]
-mean_vals 1.056321
-var_vals  1.017769
+               [,1]
+mean_vals 0.9735846
+var_vals  0.8871322
 
 [[88]]
-              [,1]
-mean_vals 1.125567
-var_vals  1.300434
+             [,1]
+mean_vals 1.11148
+var_vals  1.10295
 
 [[89]]
-              [,1]
-mean_vals 1.161540
-var_vals  1.372129
+               [,1]
+mean_vals 0.8731257
+var_vals  0.7447402
 
 [[90]]
-              [,1]
-mean_vals 1.045909
-var_vals  1.249048
+               [,1]
+mean_vals 1.1222328
+var_vals  0.9353478
 
 [[91]]
-               [,1]
-mean_vals 0.9567360
-var_vals  0.8523573
+              [,1]
+mean_vals 1.104739
+var_vals  1.383945
 
 [[92]]
-              [,1]
-mean_vals 1.045828
-var_vals  0.854527
+               [,1]
+mean_vals 0.9611209
+var_vals  0.7018965
 
 [[93]]
                [,1]
-mean_vals 0.7842939
-var_vals  0.4546450
+mean_vals 0.8574627
+var_vals  0.7921347
 
 [[94]]
-               [,1]
-mean_vals 1.0245078
-var_vals  0.8901121
+              [,1]
+mean_vals 1.056890
+var_vals  1.168564
 
 [[95]]
                [,1]
-mean_vals 0.8347568
-var_vals  0.8018113
+mean_vals 0.9847736
+var_vals  0.7383174
 
 [[96]]
-              [,1]
-mean_vals 1.060521
-var_vals  0.799746
+               [,1]
+mean_vals 0.9635496
+var_vals  1.1262211
 
 [[97]]
                [,1]
-mean_vals 0.9849316
-var_vals  0.9137243
+mean_vals 0.8330464
+var_vals  1.1237506
 
 [[98]]
-              [,1]
-mean_vals 1.098847
-var_vals  1.061601
+               [,1]
+mean_vals 0.9403489
+var_vals  0.8138514
 
 [[99]]
                [,1]
-mean_vals 0.7401929
-var_vals  0.3912435
+mean_vals 0.7647080
+var_vals  0.6523304
 
 [[100]]
                [,1]
-mean_vals 0.8445437
-var_vals  0.6407750</code></pre>
+mean_vals 1.0054342
+var_vals  0.9508391</code></pre>
 </div>
 </div>
 </section>
 <section id="question-2" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="question-2"><span class="header-section-number">2.2</span> QUESTION 2</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foreach)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(doParallel)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>gal <span class="ot">&lt;-</span> galaxies</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>B<span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>tboot <span class="ot">&lt;-</span> <span class="fu">numeric</span>(B) </span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Doing 1000 single bootstraps</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>({</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">foreach</span>(<span class="at">i =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>, <span class="at">.combine =</span> c) <span class="sc">%do%</span> {</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    tboot[i] <span class="ot">&lt;-</span> <span class="fu">median</span>(<span class="fu">sample</span>(gal, <span class="at">replace=</span><span class="cn">TRUE</span>))</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>({</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>B) {</span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    tboot[i] <span class="ot">&lt;-</span> <span class="fu">median</span>(<span class="fu">sample</span>(gal, <span class="at">replace =</span> T))</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co">#Doing 1000 bootstrap samples at a Time</span></span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>({</span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">foreach</span>(<span class="at">i =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>, <span class="at">.combine =</span> c) <span class="sc">%do%</span> {</span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">replicate</span>(<span class="dv">1000</span>, <span class="fu">median</span>(<span class="fu">sample</span>(gal, <span class="at">replace=</span><span class="cn">TRUE</span>)))</span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>R <span class="ot">&lt;-</span> <span class="dv">1000</span>  </span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>bias <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="at">times =</span> R)</span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>tboot2 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="at">times =</span> B)  </span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>({</span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>) {</span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>) {</span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>    tboot2[i] <span class="ot">&lt;-</span> <span class="fu">median</span>(<span class="fu">sample</span>(gal, <span class="at">replace =</span> T))</span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foreach)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(doParallel)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>gal <span class="ot">&lt;-</span> galaxies</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>B<span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>tboot <span class="ot">&lt;-</span> <span class="fu">numeric</span>(B) </span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Doing 1000 single bootstraps</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>({</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">foreach</span>(<span class="at">i =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>, <span class="at">.combine =</span> c) <span class="sc">%do%</span> {</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    tboot[i] <span class="ot">&lt;-</span> <span class="fu">median</span>(<span class="fu">sample</span>(gal, <span class="at">replace=</span><span class="cn">TRUE</span>))</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>({</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>B) {</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>    tboot[i] <span class="ot">&lt;-</span> <span class="fu">median</span>(<span class="fu">sample</span>(gal, <span class="at">replace =</span> T))</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="co">#Doing 1000 bootstrap samples at a Time</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>({</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">foreach</span>(<span class="at">i =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>, <span class="at">.combine =</span> c) <span class="sc">%do%</span> {</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">replicate</span>(<span class="dv">1000</span>, <span class="fu">median</span>(<span class="fu">sample</span>(gal, <span class="at">replace=</span><span class="cn">TRUE</span>)))</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>R <span class="ot">&lt;-</span> <span class="dv">1000</span>  </span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>bias <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="at">times =</span> R)</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>tboot2 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="at">times =</span> B)  </span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>({</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>) {</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>) {</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>    tboot2[i] <span class="ot">&lt;-</span> <span class="fu">median</span>(<span class="fu">sample</span>(gal, <span class="at">replace =</span> T))</span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="question-3" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="question-3"><span class="header-section-number">2.3</span> QUESTION 3</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foreach)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(doParallel)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>n<span class="ot">&lt;-</span><span class="dv">50</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>u<span class="ot">&lt;-</span> <span class="fu">rexp</span>(n,<span class="at">rate=</span><span class="dv">1</span>)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>mean<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">mean</span>(u)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>true_mean <span class="ot">&lt;-</span> <span class="dv">1</span> </span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>B<span class="ot">&lt;-</span><span class="dv">1000</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>c1 <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>c2 <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>Bootstr_mean <span class="ot">&lt;-</span> <span class="fu">numeric</span>(B)</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>cl <span class="ot">&lt;-</span> <span class="fu">makeCluster</span>(<span class="dv">3</span>)</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="fu">registerDoParallel</span>(cl)</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">foreach</span>(<span class="at">i=</span> <span class="dv">1</span><span class="sc">:</span>B, <span class="at">.combine=</span><span class="st">'+'</span>) <span class="sc">%dopar%</span>{</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  samp_data <span class="ot">&lt;-</span> <span class="fu">rexp</span>(n, <span class="at">rate=</span><span class="dv">1</span>)</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  Bootstr_mean <span class="ot">&lt;-</span> <span class="fu">replicate</span>(B, <span class="fu">mean</span>(<span class="fu">sample</span>(samp_data, <span class="at">replace=</span><span class="cn">TRUE</span>)))</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  Percintile <span class="ot">&lt;-</span> <span class="fu">quantile</span>(Bootstr_mean, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (Percintile[<span class="dv">1</span>] <span class="sc">&lt;=</span> true_mean <span class="sc">&amp;&amp;</span> Percintile[<span class="dv">2</span>] <span class="sc">&gt;=</span> true_mean){</span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="dv">1</span>)</span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span>{</span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="dv">0</span>)</span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>coverage <span class="ot">&lt;-</span> result<span class="sc">/</span>B</span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>coverage</span>
-<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"coverage of a percentile bootstrap confidence interval is "</span>, coverage,<span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="fu">stopCluster</span>(cl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foreach)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(doParallel)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>n<span class="ot">&lt;-</span><span class="dv">50</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>u<span class="ot">&lt;-</span> <span class="fu">rexp</span>(n,<span class="at">rate=</span><span class="dv">1</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>mean<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">mean</span>(u)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>true_mean <span class="ot">&lt;-</span> <span class="dv">1</span> </span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>B<span class="ot">&lt;-</span><span class="dv">1000</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>c1 <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>c2 <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>Bootstr_mean <span class="ot">&lt;-</span> <span class="fu">numeric</span>(B)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>cl <span class="ot">&lt;-</span> <span class="fu">makeCluster</span>(<span class="dv">3</span>)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="fu">registerDoParallel</span>(cl)</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">foreach</span>(<span class="at">i=</span> <span class="dv">1</span><span class="sc">:</span>B, <span class="at">.combine=</span><span class="st">'+'</span>) <span class="sc">%dopar%</span>{</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>  samp_data <span class="ot">&lt;-</span> <span class="fu">rexp</span>(n, <span class="at">rate=</span><span class="dv">1</span>)</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>  Bootstr_mean <span class="ot">&lt;-</span> <span class="fu">replicate</span>(B, <span class="fu">mean</span>(<span class="fu">sample</span>(samp_data, <span class="at">replace=</span><span class="cn">TRUE</span>)))</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>  Percintile <span class="ot">&lt;-</span> <span class="fu">quantile</span>(Bootstr_mean, <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (Percintile[<span class="dv">1</span>] <span class="sc">&lt;=</span> true_mean <span class="sc">&amp;&amp;</span> Percintile[<span class="dv">2</span>] <span class="sc">&gt;=</span> true_mean){</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="dv">1</span>)</span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span>{</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="dv">0</span>)</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>coverage <span class="ot">&lt;-</span> result<span class="sc">/</span>B</span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>coverage</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"coverage of a percentile bootstrap confidence interval is "</span>, coverage,<span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a><span class="fu">stopCluster</span>(cl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="question-4" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="question-4"><span class="header-section-number">2.4</span> QUESTION 4</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foreach)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">foreach</span>(<span class="at">i =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) <span class="sc">%do%</span> {</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  it <span class="ot">&lt;-</span> <span class="fu">irnorm</span>(<span class="dv">5</span>)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nextElem</span>(it)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nextElem</span>(it)</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nextElem</span>(it)</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nextElem</span>(it)</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nextElem</span>(it)</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) {</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  maxi <span class="ot">&lt;-</span> <span class="fu">max</span>(result[[i]])</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"Vector"</span>, i, <span class="st">"Max:"</span>, maxi, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foreach)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">foreach</span>(<span class="at">i =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) <span class="sc">%do%</span> {</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  it <span class="ot">&lt;-</span> <span class="fu">irnorm</span>(<span class="dv">5</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nextElem</span>(it)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nextElem</span>(it)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nextElem</span>(it)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nextElem</span>(it)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nextElem</span>(it)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) {</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  maxi <span class="ot">&lt;-</span> <span class="fu">max</span>(result[[i]])</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"Vector"</span>, i, <span class="st">"Max:"</span>, maxi, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="question-5" class="level2" data-number="2.5">
@@ -831,86 +840,70 @@ var_vals  0.6407750</code></pre>
 <section id="foreach" class="level3" data-number="2.5.1">
 <h3 data-number="2.5.1" class="anchored" data-anchor-id="foreach"><span class="header-section-number">2.5.1</span> FOREACH</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(parallel)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foreach)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(iterators)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  it <span class="ot">&lt;-</span> <span class="fu">irnorm</span>(<span class="dv">5</span>)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nextElem</span>(it)</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nextElem</span>(it)</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nextElem</span>(it)</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nextElem</span>(it)</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nextElem</span>(it)</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>({</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  result1 <span class="ot">&lt;-</span> <span class="fu">foreach</span>(<span class="at">i =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) <span class="sc">%do%</span> {</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">result</span>()</span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) {</span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    maxi <span class="ot">&lt;-</span> <span class="fu">max</span>(result1[[i]])</span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(maxi)</span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.4595894
-[1] -0.49685
-[1] 2.070271</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   user  system elapsed 
-  0.005   0.000   0.005 </code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(parallel)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(foreach)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(iterators)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  it <span class="ot">&lt;-</span> <span class="fu">irnorm</span>(<span class="dv">5</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nextElem</span>(it)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nextElem</span>(it)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nextElem</span>(it)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nextElem</span>(it)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nextElem</span>(it)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>({</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  result1 <span class="ot">&lt;-</span> <span class="fu">foreach</span>(<span class="at">i =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) <span class="sc">%do%</span> {</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">result</span>()</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) {</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    maxi <span class="ot">&lt;-</span> <span class="fu">max</span>(result1[[i]])</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(maxi)</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="parlapply" class="level3" data-number="2.5.2">
 <h3 data-number="2.5.2" class="anchored" data-anchor-id="parlapply"><span class="header-section-number">2.5.2</span> parLapply</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(parallel)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(iterators)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>cl <span class="ot">&lt;-</span> <span class="fu">makeCluster</span>(<span class="dv">3</span>) </span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">clusterExport</span>(cl, <span class="at">varlist =</span> <span class="fu">c</span>(<span class="st">"result"</span>, <span class="st">"irnorm"</span>, <span class="st">"nextElem"</span>))  </span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  it <span class="ot">&lt;-</span> <span class="fu">irnorm</span>(<span class="dv">5</span>)</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nextElem</span>(it)</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nextElem</span>(it)</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nextElem</span>(it)</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nextElem</span>(it)</span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nextElem</span>(it)</span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>({</span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>  result2 <span class="ot">&lt;-</span> <span class="fu">parLapply</span>(cl, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="cf">function</span>(i) {</span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">result</span>()</span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>  result2 <span class="ot">&lt;-</span> <span class="fu">do.call</span>(cbind, result2)</span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) {</span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>    maxi <span class="ot">&lt;-</span> <span class="fu">max</span>(result2[, i])</span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(maxi)</span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.740094
-[1] 1.735077
-[1] 1.79209</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   user  system elapsed 
-  0.003   0.000   0.003 </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stopCluster</span>(cl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(parallel)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(iterators)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>cl <span class="ot">&lt;-</span> <span class="fu">makeCluster</span>(<span class="dv">3</span>) </span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="fu">clusterExport</span>(cl, <span class="at">varlist =</span> <span class="fu">c</span>(<span class="st">"result"</span>, <span class="st">"irnorm"</span>, <span class="st">"nextElem"</span>))  </span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  it <span class="ot">&lt;-</span> <span class="fu">irnorm</span>(<span class="dv">5</span>)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nextElem</span>(it)</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nextElem</span>(it)</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nextElem</span>(it)</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nextElem</span>(it)</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nextElem</span>(it)</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>({</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>  result2 <span class="ot">&lt;-</span> <span class="fu">parLapply</span>(cl, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="cf">function</span>(i) {</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">result</span>()</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>  result2 <span class="ot">&lt;-</span> <span class="fu">do.call</span>(cbind, result2)</span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) {</span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>    maxi <span class="ot">&lt;-</span> <span class="fu">max</span>(result2[, i])</span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(maxi)</span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a><span class="fu">stopCluster</span>(cl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br>
 </p>
@@ -918,36 +911,27 @@ var_vals  0.6407750</code></pre>
 <section id="replicate" class="level3" data-number="2.5.3">
 <h3 data-number="2.5.3" class="anchored" data-anchor-id="replicate"><span class="header-section-number">2.5.3</span> REPLICATE</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(parallel)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(iterators)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  it <span class="ot">&lt;-</span> <span class="fu">irnorm</span>(<span class="dv">5</span>)</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nextElem</span>(it)</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nextElem</span>(it)</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nextElem</span>(it)</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nextElem</span>(it)</span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nextElem</span>(it)</span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>({</span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  result2 <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="at">n =</span> <span class="dv">3</span>, <span class="fu">result</span>())</span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) {</span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>    maxi <span class="ot">&lt;-</span> <span class="fu">max</span>(result2[,i])</span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(maxi)</span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.4595894
-[1] -0.49685
-[1] 2.070271</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   user  system elapsed 
-  0.002   0.000   0.003 </code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(parallel)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(iterators)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  it <span class="ot">&lt;-</span> <span class="fu">irnorm</span>(<span class="dv">5</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nextElem</span>(it)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nextElem</span>(it)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nextElem</span>(it)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nextElem</span>(it)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nextElem</span>(it)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>({</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>  result2 <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="at">n =</span> <span class="dv">3</span>, <span class="fu">result</span>())</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) {</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    maxi <span class="ot">&lt;-</span> <span class="fu">max</span>(result2[,i])</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(maxi)</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
