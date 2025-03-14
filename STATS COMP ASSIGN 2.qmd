@@ -1,0 +1,226 @@
+---
+title: "STATS COMP ASSIGN 2"
+---
+
+## QUESTION 1
+
+```{r}
+library(foreach)
+library(doParallel)
+
+results <- foreach(i = 1:100) %do% {
+  vals <- rexp(100, rate = 1)
+  mean_vals <- mean(vals)
+  var_vals <- var(vals)
+  return(rbind(mean_vals, var_vals))
+
+}
+
+results
+
+
+```
+
+## QUESTION 2
+
+```{r}
+library(foreach)
+library(doParallel)
+
+library(MASS)
+gal <- galaxies
+
+B<- 1000
+tboot <- numeric(B) 
+
+#Doing 1000 single bootstraps
+system.time({
+  result <- foreach(i = 1:1000, .combine = c) %do% {
+    tboot[i] <- median(sample(gal, replace=TRUE))
+  }
+})
+
+system.time({
+  for (i in 1:B) {
+    tboot[i] <- median(sample(gal, replace = T))
+  }
+})
+
+#Doing 1000 bootstrap samples at a Time
+system.time({
+  result <- foreach(i = 1:1000, .combine = c) %do% {
+    replicate(1000, median(sample(gal, replace=TRUE)))
+  }
+})
+R <- 1000  
+bias <- rep(NA, times = R)
+tboot2 <- rep(NA, times = B)  
+
+system.time({
+for (j in 1:1000) {
+  
+  for (i in 1:1000) {
+    tboot2[i] <- median(sample(gal, replace = T))
+  }
+}
+})
+
+
+
+```
+
+## QUESTION 3
+
+```{r}
+library(foreach)
+library(doParallel)
+
+n<-50
+u<- rexp(n,rate=1)
+mean.1 <- mean(u)
+true_mean <- 1 
+
+B<-1000
+c1 <- c()
+c2 <- c()
+Bootstr_mean <- numeric(B)
+result <- 0
+
+
+cl <- makeCluster(3)
+registerDoParallel(cl)
+
+result <- foreach(i= 1:B, .combine='+') %dopar%{
+  samp_data <- rexp(n, rate=1)
+  Bootstr_mean <- replicate(B, mean(sample(samp_data, replace=TRUE)))
+  Percintile <- quantile(Bootstr_mean, c(0.025, 0.975))
+  
+  if (Percintile[1] <= true_mean && Percintile[2] >= true_mean){
+    return(1)
+  } else{
+    return(0)
+  }
+  
+  
+}
+
+coverage <- result/B
+coverage
+
+stopCluster(cl)
+```
+
+## QUESTION 4
+
+```{r}
+library(foreach)
+
+set.seed(1234)
+result <- foreach(i = 1:3) %do% {
+  it <- irnorm(5)
+  nextElem(it)
+  nextElem(it)
+  nextElem(it)
+  nextElem(it)
+  nextElem(it)
+
+}
+
+for (i in 1:3) {
+  maxi <- max(result[[i]])
+  cat("Vector", i, "Max:", maxi, "\n")
+}
+
+```
+
+## QUESTION 5
+
+### FOREACH
+
+```{r}
+library(parallel)
+library(foreach)
+library(iterators)
+
+set.seed(1234)
+result <- function() {
+  it <- irnorm(5)
+  nextElem(it)
+  nextElem(it)
+  nextElem(it)
+  nextElem(it)
+  nextElem(it)
+}
+
+system.time({
+  result1 <- foreach(i = 1:3) %do% {
+    result()
+  }
+
+  for (i in 1:3) {
+    maxi <- max(result1[[i]])
+    print(maxi)
+  }
+})
+```
+
+### parLapply
+
+```{r}
+library(parallel)
+library(iterators)
+
+set.seed(1234)
+result <- function() {
+  it <- irnorm(5)
+  nextElem(it)
+  nextElem(it)
+  nextElem(it)
+  nextElem(it)
+  nextElem(it)
+}
+
+cl <- makeCluster(3)
+clusterExport(cl, "result")
+clusterEvalQ(cl, library(iterators))
+
+system.time({
+  parL <- parLapply(cl, 1:3, function(i){
+    result()
+  })
+
+  for (i in 1:3) {
+    maxi <- max(parL[[i]])
+    print(maxi)
+  }
+})
+
+stopCluster(cl)
+```
+
+### REPLICATE
+
+```{r}
+library(parallel)
+library(iterators)
+
+set.seed(1234)
+result <- function() {
+  it <- irnorm(5)
+  nextElem(it)
+  nextElem(it)
+  nextElem(it)
+  nextElem(it)
+  nextElem(it)
+}
+
+system.time({
+  result2 <- replicate(n = 3, result())
+
+  for (i in 1:3) {
+    maxi <- max(result2[,i])
+    print(maxi)
+  }
+})
+
+```
